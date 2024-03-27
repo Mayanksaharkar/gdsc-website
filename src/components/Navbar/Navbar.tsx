@@ -2,27 +2,10 @@ import { useState } from "react";
 import gdsclogo from "../../assets/gdsc_logo.png";
 import { Divide as Hamburger } from "hamburger-react";
 
-const Navbar = ({
-  HomeRef,
-  AboutRef,
-  EventsRef,
-  TeamRef,
-  ContactRef,
-  currentSection,
-}: {
-  HomeRef: any;
-  AboutRef: any;
-  EventsRef: any;
-  TeamRef: any;
-  ContactRef: any;
-  currentSection: any;
-}) => {
-  const [currSection, setCurrSection] = useState("sectionHome");
-
-  const sectionScroller = (SectionRef: any) => {
-    SectionRef.current.scrollIntoView({ behavior: "smooth" });
-    console.log(currSection);
-    setCurrSection(SectionRef.current.id);
+const Navbar = ({ section, setSection }: { section: any; setSection: any }) => {
+  const sectionScroller = (section: Number) => {
+    setSection(section);
+    toggleDropdown();
   };
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -62,57 +45,50 @@ const Navbar = ({
         <ul className='flex flex-col items-center gap-6 lg:flex-row'>
           <li
             className={`${NavLink}  ${
-              currentSection === "sectionHome" ? ActiveLink : "text-slate-600"
+              section === 0 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              sectionScroller(HomeRef);
-              toggleDropdown();
+              sectionScroller(0);
             }}
           >
             Home
           </li>
           <li
             className={`${NavLink} ${
-              currentSection === "sectionAbout" ? ActiveLink : "text-slate-600"
+              section === 1 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              sectionScroller(AboutRef);
-              toggleDropdown();
+              sectionScroller(1);
             }}
           >
             About
           </li>
           <li
             className={`${NavLink} ${
-              currentSection === "sectionEvents" ? ActiveLink : "text-slate-600"
+              section === 2 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              sectionScroller(EventsRef);
-              toggleDropdown();
+              sectionScroller(2);
             }}
           >
             Events
           </li>
           <li
             className={`${NavLink} ${
-              currentSection === "sectionTeam" ? ActiveLink : "text-slate-600"
+              section === 3 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              sectionScroller(TeamRef);
-              toggleDropdown();
+              sectionScroller(3);
             }}
           >
             Team
           </li>
           <li
             className={`${NavLink} ${
-              currentSection === "sectionContact"
-                ? ActiveLink
-                : "text-slate-600"
+              section === 4 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              sectionScroller(ContactRef);
-              toggleDropdown();
+              sectionScroller(4);
             }}
           >
             Contact
