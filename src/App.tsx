@@ -7,12 +7,12 @@ import Events from "./components/Events/Events";
 import Team from "./components/Team/Team";
 import Contact from "./components/Contact/Contact";
 import TeamPage from "./Pages/TeamPage";
-import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { ScrollManager } from "./components/ui/ScrollManager";
 import { Canvas } from "@react-three/fiber";
 import { Scroll, ScrollControls } from "@react-three/drei";
+import { useState } from "react";
 
 function App() {
   const [section, setSection] = useState(0);
