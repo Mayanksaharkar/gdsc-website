@@ -3,28 +3,12 @@ import gdsclogo from "../../assets/gdsc_logo.png";
 import { Divide as Hamburger } from "hamburger-react";
 
 const Navbar = ({
-  HomeRef,
-  AboutRef,
-  EventsRef,
-  TeamRef,
-  ContactRef,
-  currentSection,
+  section,
+  setSection,
 }: {
-  HomeRef: any;
-  AboutRef: any;
-  EventsRef: any;
-  TeamRef: any;
-  ContactRef: any;
-  currentSection: any;
+  section: Number;
+  setSection: Function;
 }) => {
-  const [currSection, setCurrSection] = useState("sectionHome");
-
-  const sectionScroller = (SectionRef: any) => {
-    SectionRef.current.scrollIntoView({ behavior: "smooth" });
-    console.log(currSection);
-    setCurrSection(SectionRef.current.id);
-  };
-
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -62,10 +46,10 @@ const Navbar = ({
         <ul className='flex flex-col items-center gap-6 lg:flex-row'>
           <li
             className={`${NavLink}  ${
-              currentSection === "sectionHome" ? ActiveLink : "text-slate-600"
+              section === 0 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              sectionScroller(HomeRef);
+              setSection(0);
               toggleDropdown();
             }}
           >
@@ -73,10 +57,10 @@ const Navbar = ({
           </li>
           <li
             className={`${NavLink} ${
-              currentSection === "sectionAbout" ? ActiveLink : "text-slate-600"
+              section === 1 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              sectionScroller(AboutRef);
+              setSection(1);
               toggleDropdown();
             }}
           >
@@ -84,10 +68,10 @@ const Navbar = ({
           </li>
           <li
             className={`${NavLink} ${
-              currentSection === "sectionEvents" ? ActiveLink : "text-slate-600"
+              section === 2 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              sectionScroller(EventsRef);
+              setSection(2);
               toggleDropdown();
             }}
           >
@@ -95,10 +79,10 @@ const Navbar = ({
           </li>
           <li
             className={`${NavLink} ${
-              currentSection === "sectionTeam" ? ActiveLink : "text-slate-600"
+              section === 3 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              sectionScroller(TeamRef);
+              setSection(3);
               toggleDropdown();
             }}
           >
@@ -106,12 +90,10 @@ const Navbar = ({
           </li>
           <li
             className={`${NavLink} ${
-              currentSection === "sectionContact"
-                ? ActiveLink
-                : "text-slate-600"
+              section === 4 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              sectionScroller(ContactRef);
+              setSection(4);
               toggleDropdown();
             }}
           >
