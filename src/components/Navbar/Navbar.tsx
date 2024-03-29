@@ -2,13 +2,12 @@ import { useState } from "react";
 import gdsclogo from "../../assets/gdsc_logo.png";
 import { Divide as Hamburger } from "hamburger-react";
 
-const Navbar = ({
-  section,
-  setSection,
-}: {
-  section: Number;
-  setSection: Function;
-}) => {
+const Navbar = ({ section, setSection }: { section: any; setSection: any }) => {
+  const sectionScroller = (section: Number) => {
+    setSection(section);
+    toggleDropdown();
+  };
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -49,8 +48,7 @@ const Navbar = ({
               section === 0 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              setSection(0);
-              toggleDropdown();
+              sectionScroller(0);
             }}
           >
             Home
@@ -60,8 +58,7 @@ const Navbar = ({
               section === 1 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              setSection(1);
-              toggleDropdown();
+              sectionScroller(1);
             }}
           >
             About
@@ -71,8 +68,7 @@ const Navbar = ({
               section === 2 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              setSection(2);
-              toggleDropdown();
+              sectionScroller(2);
             }}
           >
             Events
@@ -82,8 +78,7 @@ const Navbar = ({
               section === 3 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              setSection(3);
-              toggleDropdown();
+              sectionScroller(3);
             }}
           >
             Team
@@ -93,8 +88,7 @@ const Navbar = ({
               section === 4 ? ActiveLink : "text-slate-600"
             }`}
             onClick={() => {
-              setSection(4);
-              toggleDropdown();
+              sectionScroller(4);
             }}
           >
             Contact
