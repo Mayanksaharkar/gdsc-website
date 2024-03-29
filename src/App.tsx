@@ -71,11 +71,7 @@ function App() {
         >
           <About />
         </section>
-        <section
-          ref={EventsRef}
-          className=' w-screen  h-screen min-h-screen overflow-y-hidden'
-          id='sectionEvents'
-        >
+        <section ref={EventsRef} className=' w-screen ' id='sectionEvents'>
           <Events />
         </section>
         <section

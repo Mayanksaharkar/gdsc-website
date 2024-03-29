@@ -7,10 +7,19 @@ import EventModal from "./EventModal";
 import { Event, EventFromList } from "../../models/Event";
 import axios from "axios";
 
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+import Icon from "./Icon";
 const Events = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [expandedEvent, setExpandedEvent] = useState<Event>(events[0]);
   const eventBaseUrl = "https://gdsc.community.dev/api/event/";
+
+  const defImageUrl =
+    "https://res.cloudinary.com/startup-grind/image/fetch/c_fill,w_500,h_500,g_center/c_fill,dpr_2.0,f_auto,g_center,q_auto:good/https://res.cloudinary.com/startup-grind/image/upload/c_fill%2Cdpr_2.0,f_auto,g_center,q_auto:good/v1/gcs/platform-data-dsc/event_banners/gdev-eccosystems-bevy-chapters-thumbnail_fMd5BWp.png";
 
   let sliderRef = useRef(null);
   useEffect(() => {
@@ -127,7 +136,7 @@ const Events = () => {
   };
 
   return (
-    <div className='w-screen h-screen flex flex-col items-center '>
+    <div className='w-screen  flex flex-col items-center '>
       {expandedEvent && (
         <EventModal
           expandedEvent={expandedEvent}
@@ -140,8 +149,9 @@ const Events = () => {
       </div>
 
       <div className='flex justify-center w-full h-full items-center align-middle'>
-        <div className='slider-container lg:w-[70%] w-[80%] lg:m-4 h-min'>
-          <Slider ref={sliderRef} {...settings}>
+        <VerticalTimeline>
+          <div className='slider-container lg:w-[70%] w-[80%] lg:m-4 h-min'>
+            {/* <Slider ref={sliderRef} {...settings}>
             {events.map((event) => (
               <div key={event.id} className='p-4 l'>
                 <EventCard
@@ -152,8 +162,32 @@ const Events = () => {
                 />
               </div>
             ))}
-          </Slider>
-        </div>
+          </Slider> */}
+
+            {events.map((event) => (
+              <VerticalTimelineElement
+                className='vertical-timeline-element--work'
+                contentStyle={{
+                  background: "rgb(33, 150, 243)",
+                  color: "#fff",
+                }}
+                contentArrowStyle={{
+                  borderRight: "7px solid  rgb(33, 150, 243)",
+                }}
+                date='2011 - present'
+                iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+                icon={<Icon url={event.picture.url || defImageUrl} />}
+              >
+                <EventCard
+                  event={event}
+                  handleReadMoreClick={handleReadMoreClick}
+                  formatDate={formatDate}
+                  formatTime={formatTime}
+                />
+              </VerticalTimelineElement>
+            ))}
+          </div>
+        </VerticalTimeline>
       </div>
     </div>
   );
